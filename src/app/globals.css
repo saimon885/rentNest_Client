@@ -1,26 +1,40 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 🌟 RentNest Light Theme (Default Professional Theme) */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #0f172a; 
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #0d9488; /* Teal Green (Perfect for Booking, Success, Pricing) */
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #f59e0b; /* Warm Amber (For Ratings, Stars, Featured Badges) */
+  --color-accent-content: #1e293b;
+
+  --color-neutral: #334155; /* Text Color */
+  --color-base-100: #f8fafc; /* Soft Light Background */
+  --color-base-200: #f1f5f9; /* Card Backgrounds / Inner Sections */
+
+  --radius-selector: 0.75rem; /* modern rounded corners for smooth UI */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* 🌙 RentNest Dark Theme (Optional: For Premium Look) */
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: #38bdf8; /* Light Sky Blue for Dark Mode accents */
+  --color-primary-content: #0f172a;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --color-secondary: #2dd4bf; /* Bright Teal */
+  --color-secondary-content: #0f172a;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-accent: #fbbf24;
+
+  --color-neutral: #f1f5f9;
+  --color-base-100: #0f172a;
+  --color-base-200: #1e293b; 
+
+  --radius-selector: 0.75rem;
 }
