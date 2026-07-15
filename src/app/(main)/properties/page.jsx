@@ -3,12 +3,28 @@ import { Search } from "lucide-react";
 import PropertiesCard from "@/components/card/PropertiesCard";
 
 const Properties = async () => {
-  const data = await fetch("http://rent-nest-a-4.vercel.app/api/properties");
-  const result = await data.json();
-  if(!result){
-    console.log("result not found");
+  let result = null;
+
+  try {
+    const data = await fetch(
+      "https://rent-nest-a-4.vercel.app/api/properties",
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (data.ok) {
+      result = await data.json();
+    }
+  } catch (error) {
+    console.error("Error:", error);
   }
-  console.log(result);
+
+  const propertiesList = Array.isArray(result)
+    ? result
+    : result?.data && Array.isArray(result.data)
+      ? result.data
+      : [];
 
   return (
     <div className="bg-base-100 min-h-screen pb-20">
@@ -41,7 +57,7 @@ const Properties = async () => {
         <div className="bg-base-100 p-4 rounded-xl border border-base-200 shadow-sm flex justify-between items-center mb-6">
           <span className="text-sm font-bold text-neutral">
             Showing{" "}
-            <span className="text-secondary">{result?.data?.length || 0}</span>{" "}
+            <span className="text-secondary">{propertiesList.length}</span>{" "}
             properties
           </span>
           <div className="text-xs font-semibold text-neutral/60">
@@ -52,9 +68,9 @@ const Properties = async () => {
           </div>
         </div>
 
-        {result?.data && result.data.length > 0 ? (
+        {propertiesList.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {result.data.map((property) => (
+            {propertiesList.map((property) => (
               <PropertiesCard
                 key={property.id || property._id}
                 property={property}

@@ -28,9 +28,9 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-screen flex flex-col bg-base-100 text-neutral">
         <AuthProvider>
-          <Navbar />
+          {/* <Navbar /> */}
           <main className="flex-grow">{children}</main>
-          <Footer />
+          {/* <Footer /> */}
         </AuthProvider>
       </body>
     </html>

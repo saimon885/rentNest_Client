@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { User, Mail, KeyRound, ShieldCheck } from "lucide-react";
+import React, { useState } from "react";
+import { User, Mail, KeyRound, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -11,6 +11,8 @@ import UseAuth from "@/provider/Useauth";
 const Register = () => {
   const { createUser } = UseAuth();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -32,6 +34,12 @@ const Register = () => {
       );
 
       await createUser(formData.email, formData.password);
+
+      // const token = response.data.data.accessToken;
+      // console.log(token);
+      // if (token) {
+      //   localStorage.setItem("accessToken", token);
+      // }
 
       Swal.fire({
         title: "Registration Successful!",
@@ -60,6 +68,7 @@ const Register = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
+        {/* Full Name */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Full Name
@@ -86,6 +95,7 @@ const Register = () => {
           )}
         </div>
 
+        {/* Email Address */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Email Address
@@ -112,6 +122,7 @@ const Register = () => {
           )}
         </div>
 
+        {/* Account Role */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Account Marketplace Role
@@ -133,6 +144,7 @@ const Register = () => {
           )}
         </div>
 
+        {/* Secure Password (Show/Hide) */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Secure Password
@@ -140,7 +152,7 @@ const Register = () => {
           <div className="flex items-center gap-2 bg-base-200 border border-base-300 px-3 py-2.5 rounded-xl focus-within:border-secondary transition-colors">
             <KeyRound className="w-4 h-4 text-neutral/40 shrink-0" />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="saimon"
               className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
               {...register("password", {
@@ -151,6 +163,17 @@ const Register = () => {
                 },
               })}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="focus:outline-none"
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4 text-neutral/40 hover:text-neutral/60 transition-colors" />
+              ) : (
+                <Eye className="w-4 h-4 text-neutral/40 hover:text-neutral/60 transition-colors" />
+              )}
+            </button>
           </div>
           {errors.password && (
             <span className="text-[10px] text-error font-bold px-1">

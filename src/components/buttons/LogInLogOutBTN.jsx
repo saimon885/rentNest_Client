@@ -11,6 +11,7 @@ const LogInLogOutBTN = () => {
   const handleLogOUt = async () => {
     try {
       await logOutUser();
+      localStorage.removeItem("accessToken");
       Swal.fire({
         title: "Logged Out!",
         text: "You have been successfully logged out.",

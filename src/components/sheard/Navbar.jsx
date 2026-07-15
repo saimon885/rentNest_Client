@@ -32,9 +32,16 @@ const Navbar = () => {
         </ActiveLink>
       </li>
       <li>
-        <ActiveLink href="/about">
+        <ActiveLink href="/profile">
           <span className="flex items-center gap-2 font-medium">
-            <Info className="w-4 h-4 text-secondary" /> About Us
+            <Info className="w-4 h-4 text-secondary" /> Profile
+          </span>
+        </ActiveLink>
+      </li>
+      <li>
+        <ActiveLink href="/dashboard">
+          <span className="flex items-center gap-2 font-medium">
+            <Info className="w-4 h-4 text-secondary" /> Dashboard
           </span>
         </ActiveLink>
       </li>
