@@ -1,14 +1,13 @@
 import CallToAction from "@/components/Banner/CallToAction";
-import FeaturedProperties from "@/components/Banner/FeaturedProperties";
 import HeroBanner from "@/components/Banner/HeroBanner";
 import HowItWorks from "@/components/Banner/HowItWorks";
-import Image from "next/image";
+import Properties from "./properties/page";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <HeroBanner />
-      {/* <FeaturedProperties></FeaturedProperties> */}
+      <Properties></Properties>
       <HowItWorks></HowItWorks>
       <CallToAction></CallToAction>
     </div>

@@ -1,0 +1,142 @@
+import React from "react";
+import Link from "next/link";
+import { KeyRound, Mail, Building2, CheckCircle2 } from "lucide-react";
+
+const LoginPage = () => {
+  return (
+    <div className="min-h-[90vh] max-w-6xl mx-auto my-6 lg:my-12 w-full bg-base-200 border border-base-300 rounded-3xl overflow-hidden shadow-xl flex flex-col lg:flex-row">
+      {/* Left Column: Perfect Visual & Info Section */}
+      <div className="hidden lg:flex lg:w-[45%] relative bg-slate-950 text-white p-12 flex-col justify-between overflow-hidden">
+        {/* Overlay to dim the background image nicely */}
+        <div className="absolute inset-0 bg-slate-950/80 z-10"></div>
+        <img
+          src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+          alt="Premium Property Visual"
+          className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
+        />
+
+        {/* Logo */}
+        <div className="flex items-center gap-2 relative z-20">
+          <div className="bg-secondary p-2 rounded-xl text-white shadow-md">
+            <Building2 className="w-5 h-5" />
+          </div>
+          <span className="text-xl font-black tracking-tight">
+            Rent<span className="text-secondary">Nest</span>
+          </span>
+        </div>
+
+        {/* Dynamic Text Info */}
+        <div className="relative z-20 flex flex-col gap-4 max-w-sm">
+          <h2 className="text-2xl font-black leading-tight text-white">
+            Simplify Your Entire Property Rental Cycle.
+          </h2>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Access your unified workspace to control communication, automated
+            invoices, and secure rental bookings instantly.
+          </p>
+          <div className="flex flex-col gap-2 mt-2">
+            <div className="flex items-center gap-2 text-[11px] text-slate-300 font-semibold">
+              <CheckCircle2 className="w-3.5 h-3.5 text-secondary shrink-0" />{" "}
+              Verified Listings Only
+            </div>
+            <div className="flex items-center gap-2 text-[11px] text-slate-300 font-semibold">
+              <CheckCircle2 className="w-3.5 h-3.5 text-secondary shrink-0" />{" "}
+              Fast & Secured Agreements
+            </div>
+          </div>
+        </div>
+
+        {/* Footer info */}
+        <div className="relative z-20 text-[10px] text-slate-500 font-medium">
+          © {new Date().getFullYear()} RentNest. All rights reserved.
+        </div>
+      </div>
+
+      {/* Right Column: Clean Form Container */}
+      <div className="w-full lg:w-[55%] flex items-center justify-center p-6 md:p-12 bg-base-100">
+        <div className="w-full max-w-md flex flex-col gap-6">
+          <div className="flex flex-col gap-1.5 text-center lg:text-left">
+            {/* Show logo on small screen only */}
+            <div className="flex lg:hidden items-center gap-2 justify-center mb-2">
+              <div className="bg-secondary p-1.5 rounded-lg text-white">
+                <Building2 className="w-4 h-4" />
+              </div>
+              <span className="text-base font-black">RentNest</span>
+            </div>
+            <h1 className="text-xl font-black text-primary tracking-tight">
+              Welcome Back
+            </h1>
+            <p className="text-xs text-neutral/60">
+              Sign in to manage your marketplace workflows and parameters.
+            </p>
+          </div>
+
+          <form className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
+                Email Address
+              </label>
+              <div className="flex items-center gap-2 bg-base-200 border border-base-300 px-3 py-2.5 rounded-xl focus-within:border-secondary transition-colors">
+                <Mail className="w-4 h-4 text-neutral/40 shrink-0" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="admin@gmail.com"
+                  className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <div className="flex justify-between items-center">
+                <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
+                  Password
+                </label>
+                <a
+                  href="#"
+                  className="text-[11px] font-bold text-secondary hover:underline"
+                >
+                  Forgot password?
+                </a>
+              </div>
+              <div className="flex items-center gap-2 bg-base-200 border border-base-300 px-3 py-2.5 rounded-xl focus-within:border-secondary transition-colors">
+                <KeyRound className="w-4 h-4 text-neutral/40 shrink-0" />
+                <input
+                  type="password"
+                  name="password"
+                  required
+                  placeholder="admin"
+                  className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary w-full font-bold rounded-xl mt-2 shadow-sm transition-transform active:scale-95 text-xs h-11 text-white"
+            >
+              Sign In Account
+            </button>
+          </form>
+
+          <div className="divider my-0 text-[10px] font-bold text-neutral/30 uppercase">
+            New to the Platform?
+          </div>
+
+          <div className="text-center text-xs text-neutral/60 font-medium">
+            Dont have an account?{" "}
+            <Link
+              href="/register"
+              className="text-secondary font-bold hover:underline"
+            >
+              Create an Account
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;

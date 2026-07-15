@@ -9,8 +9,12 @@ import {
   HomeModernIcon,
 } from "lucide-react";
 import Link from "next/link";
+import UseAuth from "@/provider/Useauth";
+import LogInLogOutBTN from "../buttons/LogInLogOutBTN";
 
 const Navbar = () => {
+  //   const { user } = UseAuth();
+  //   console.log(user);
   const navLinks = (
     <>
       <li>
@@ -79,11 +83,7 @@ const Navbar = () => {
 
           {/* Right Side Action Button */}
           <div className="navbar-end">
-            <Link href="/signin">
-              <button className="btn btn-primary btn-md font-bold shadow-sm px-5 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all">
-                <LogIn className="w-4 h-4" /> Sign In
-              </button>
-            </Link>
+            <LogInLogOutBTN></LogInLogOutBTN>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ const Navbar = () => {
 
           {/* Sidebar Footer Sign In Button */}
           <div className="pt-4 border-t border-base-200">
-            <Link href="/signin">
+            <Link href="/login">
               <button className="btn btn-primary w-full font-bold rounded-xl flex items-center justify-center gap-2">
                 <LogIn className="w-4 h-4" /> Sign In
               </button>
