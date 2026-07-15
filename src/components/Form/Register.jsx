@@ -4,10 +4,13 @@ import React from "react";
 import { User, Mail, KeyRound, ShieldCheck } from "lucide-react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 import UseAuth from "@/provider/Useauth";
 
 const Register = () => {
   const { createUser } = UseAuth();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,34 +25,41 @@ const Register = () => {
   });
 
   const onSubmit = async (formData) => {
-    console.log("Registration Process Started:", formData.email);
     try {
-      const userCredential = await createUser(
-        formData.email,
-        formData.password,
-      );
-      console.log(
-        "Firebase Account Created Successfully:",
-        userCredential?.user,
-      );
-      const response = await axios.post(
+      await axios.post(
         "https://rent-nest-a-4.vercel.app/api/auth/register",
         formData,
       );
 
-      const result = response.data;
-      console.log("Database Sync Successful:", result);
+      await createUser(formData.email, formData.password);
+
+      Swal.fire({
+        title: "Registration Successful!",
+        text: "Your account has been created.",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Go to Home",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/");
+        }
+      });
     } catch (error) {
-      console.error(
-        "Registration Pipeline Failed:",
-        error.message || error.response?.data,
-      );
+      Swal.fire({
+        title: "Error!",
+        text:
+          error.response?.data?.message ||
+          error.message ||
+          "Registration failed",
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3.5">
-        {/* Full Name */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Full Name
@@ -76,7 +86,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* Email Address */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Email Address
@@ -103,7 +112,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* Account Marketplace Role */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Account Marketplace Role
@@ -125,7 +133,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* Secure Password */}
         <div className="flex flex-col gap-1.5">
           <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
             Secure Password
@@ -152,7 +159,6 @@ const Register = () => {
           )}
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="btn btn-primary w-full font-bold rounded-xl mt-2 shadow-sm transition-transform active:scale-95 text-xs h-11 text-white"

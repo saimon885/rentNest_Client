@@ -110,15 +110,6 @@ const Navbar = () => {
             {/* Sidebar Links */}
             <ul className="menu menu-vertical gap-2 p-0">{navLinks}</ul>
           </div>
-
-          {/* Sidebar Footer Sign In Button */}
-          <div className="pt-4 border-t border-base-200">
-            <Link href="/login">
-              <button className="btn btn-primary w-full font-bold rounded-xl flex items-center justify-center gap-2">
-                <LogIn className="w-4 h-4" /> Sign In
-              </button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { KeyRound, Mail, Building2, CheckCircle2 } from "lucide-react";
+import LogIn from "@/components/Form/LogIn";
 
 const LoginPage = () => {
   return (
@@ -71,54 +72,7 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
-                Email Address
-              </label>
-              <div className="flex items-center gap-2 bg-base-200 border border-base-300 px-3 py-2.5 rounded-xl focus-within:border-secondary transition-colors">
-                <Mail className="w-4 h-4 text-neutral/40 shrink-0" />
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="admin@gmail.com"
-                  className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <div className="flex justify-between items-center">
-                <label className="text-[11px] font-bold text-neutral/60 uppercase tracking-wider">
-                  Password
-                </label>
-                <a
-                  href="#"
-                  className="text-[11px] font-bold text-secondary hover:underline"
-                >
-                  Forgot password?
-                </a>
-              </div>
-              <div className="flex items-center gap-2 bg-base-200 border border-base-300 px-3 py-2.5 rounded-xl focus-within:border-secondary transition-colors">
-                <KeyRound className="w-4 h-4 text-neutral/40 shrink-0" />
-                <input
-                  type="password"
-                  name="password"
-                  required
-                  placeholder="admin"
-                  className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              className="btn btn-primary w-full font-bold rounded-xl mt-2 shadow-sm transition-transform active:scale-95 text-xs h-11 text-white"
-            >
-              Sign In Account
-            </button>
-          </form>
+          <LogIn></LogIn>
 
           <div className="divider my-0 text-[10px] font-bold text-neutral/30 uppercase">
             New to the Platform?

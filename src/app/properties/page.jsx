@@ -5,6 +5,9 @@ import PropertiesCard from "@/components/card/PropertiesCard";
 const Properties = async () => {
   const data = await fetch("http://rent-nest-a-4.vercel.app/api/properties");
   const result = await data.json();
+  if(!result){
+    console.log("result not found");
+  }
   console.log(result);
 
   return (
