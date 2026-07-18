@@ -6,9 +6,7 @@ const propertyDetails = async ({ params }) => {
   let result = null;
 
   try {
-    const res = await fetch(
-      `https://rent-nest-a-4.vercel.app/api/properties/${slug}`,
-    );
+    const res = await fetch(`http://localhost:5000/api/properties/${slug}`);
     if (res.ok) {
       result = await res.json();
     }

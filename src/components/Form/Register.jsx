@@ -28,10 +28,7 @@ const Register = () => {
 
   const onSubmit = async (formData) => {
     try {
-      await axios.post(
-        "https://rent-nest-a-4.vercel.app/api/auth/register",
-        formData,
-      );
+      await axios.post("http://localhost:5000/api/auth/register", formData);
 
       await createUser(formData.email, formData.password);
 

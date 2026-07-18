@@ -27,14 +27,14 @@ const LogIn = () => {
   });
 
   const onSubmit = async (formData) => {
+    // console.log(formData);
     try {
       await signInUser(formData.email, formData.password);
 
       const response = await axios.post(
-        "https://rent-nest-a-4.vercel.app/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         formData,
       );
-      console.log(response);
 
       const token = response.data.data.accessToken;
       console.log(token);
@@ -50,7 +50,7 @@ const LogIn = () => {
         confirmButtonText: "Ok",
       }).then((result) => {
         if (result.isConfirmed) {
-          //   router.push(from);
+          router.push(from);
         }
       });
     } catch (error) {
@@ -75,14 +75,10 @@ const LogIn = () => {
             <Mail className="w-4 h-4 text-neutral/40 shrink-0" />
             <input
               type="email"
-              placeholder="admin@gmail.com"
+              placeholder="example@gmail.com"
               className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
               {...register("email", {
                 required: "Email is required",
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message: "Enter a valid email address",
-                },
               })}
             />
           </div>
@@ -110,14 +106,10 @@ const LogIn = () => {
             <KeyRound className="w-4 h-4 text-neutral/40 shrink-0" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="admin"
+              placeholder="your password"
               className="bg-transparent text-xs w-full outline-none text-neutral font-medium"
               {...register("password", {
                 required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters long",
-                },
               })}
             />
             <button

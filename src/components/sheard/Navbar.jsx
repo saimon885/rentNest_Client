@@ -12,9 +12,8 @@ import Link from "next/link";
 import UseAuth from "@/provider/Useauth";
 import LogInLogOutBTN from "../buttons/LogInLogOutBTN";
 
+
 const Navbar = () => {
-  //   const { user } = UseAuth();
-  //   console.log(user);
   const navLinks = (
     <>
       <li>
@@ -91,6 +90,7 @@ const Navbar = () => {
           {/* Right Side Action Button */}
           <div className="navbar-end">
             <LogInLogOutBTN></LogInLogOutBTN>
+            
           </div>
         </div>
       </div>

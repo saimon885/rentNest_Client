@@ -6,12 +6,9 @@ const Properties = async () => {
   let result = null;
 
   try {
-    const data = await fetch(
-      "https://rent-nest-a-4.vercel.app/api/properties",
-      {
-        cache: "no-store",
-      },
-    );
+    const data = await fetch("http://localhost:5000/api/properties", {
+      cache: "no-store",
+    });
 
     if (data.ok) {
       result = await data.json();
